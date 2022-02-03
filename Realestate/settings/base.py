@@ -142,7 +142,60 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 
 
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import logging
+import logging.config
+
+from django.utils.log import DEFAULT_LOGGING
+
+logger = logging.getLogger(__name__)
+
+LOG_LEVEL = "INFO"
+
+logging.config.dictConfig({
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+        "format": "%(asctime)s %(name)-12s %(levelname)-8s %(mesage)s",
+        },
+
+       "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(mesage)s"},   
+        "django,server": DEFAULT_LOGGING["formatters"]["django.server"],
+
+        
+        },
+
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "formatter": "console",
+            },
+
+            "file": {
+                "class": "logging.FileHandler",
+                "level": "INFO",
+                "formatter": "file",
+                "filename": "logs/realestate.log",
+            },
+            "django,server": DEFAULT_LOGGING["handlers"]["django.server"],
+      }, 
+
+        "loggers": {
+            "": {"level": "INFO", "handlers": ["console", "file"],"propagate": False
+            },
+        }
+            "apps": {
+                "level": "INFO",
+                "handlers": ["console" ],"propagate": False
+
+            },
+            "django,server": DEFAULT_LOGGING["handlers"]["django.server"],
+  })
