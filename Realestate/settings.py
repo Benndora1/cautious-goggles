@@ -1,7 +1,8 @@
-import environ
 
+from distutils.debug import DEBUG
 from pathlib import Path
 
+import environ
 
 env = environ.Env(
     DEBUG=(bool, False),
@@ -17,25 +18,48 @@ environ.Env.read_env(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+# SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = 'django-insecure-(l$b$4w4gnnmclg-=&n@b^zd#f8n&vw5*f$721qqy_)cb=i1@q'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+# DEBUG = env("DEBUG")
+DEBUG = True
 
-
-ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
-
+# ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
+
+THIRD_PARTY_APPS = [
+    'rest_framework',
+    'django_filters',
+    'django_countries',
+    'phonenumber_field',
+]
+
+LOCAL_APPS = [
+    'apps.common',
+    'apps.users',
+    'apps.profiles',
+    'apps.ratings',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
