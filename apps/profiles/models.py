@@ -1,9 +1,9 @@
 from email.policy import default
 from django.db import models
-from django.conf.auth import get_user_model
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
-from phonenumber_field.modelfield import PhonenumberField
+from phonenumber_field.modelfields import PhoneNumberField
 
 from apps.common.models import TimeStampedUUIDModel
 # Create your models here.
