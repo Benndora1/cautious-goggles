@@ -188,7 +188,7 @@ logging.config.dictConfig(
         "loggers": {
             "": {"level": "INFO", "handlers": ["console", "file"], "propagate": False},
             "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
-            "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+             "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
         },
     }
 )
