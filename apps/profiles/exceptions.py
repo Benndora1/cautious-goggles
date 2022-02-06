@@ -1,6 +1,6 @@
 from rest_framework.exceptions import APIException
 
-class ProfileNotFoundException(APIException):
+class ProfileNotFound(APIException):
     status_code = 404
     default_detail = 'Profile not found.'
 
