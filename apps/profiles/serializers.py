@@ -12,3 +12,49 @@ class ProfileSerializer(serializers.ModelSerializer):
     country = CountryField(name_only=True)
     reviews = serializers.SerializerMethodField(read_only=True)
 
+    class Meta:
+        model = Profile
+        fields = ["id", "username", "profile_photo", "first_name", "last_name", "full_name", "license","about_me","phone_number","email"
+        "country", "city","is_buyer","is_seller","is_agent","rating","num_reviews","reviews","gender"]
+
+def get_full_name(self,obj):
+    first_name = obj.user.first_name.title()
+    last_name = obj.user.last_name.title()
+    return f"{first_name} {last_name}" 
+
+def get_reviews(self,obj):
+    reviews= obj.agent_review.all()
+    serializer = RatingSerializer(reviews, many=True)
+    return serializer.data
+
+def top_representation(self,instance):
+    representation = super().to_representation(instance)
+    if instance.top_agent:
+        representation["top_agent"] = True
+    return representation
+
+class UpdateProfileSerializer(serializers.ModelSerializer):
+    country = CountryField(name_only=True)
+
+
+    class Meta:
+        model = Profile
+        fields=[ "id",
+         "phone_number",
+          "about_me",
+          "license",
+          "profile_photo",
+          "gender",
+          "country", 
+          "city",
+          "is_seller",
+          "is_buyer",
+          "is_agent",
+        ]
+
+
+def top_representation(self,instance):
+    representation = super().to_representation(instance)
+    if instance.top_agent:
+        representation["top_agent"] = True
+    return representation
