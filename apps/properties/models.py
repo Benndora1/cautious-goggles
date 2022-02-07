@@ -38,8 +38,7 @@ class Property(TimeStampedUUIDModel):
     user = models.ForeignKey(User, verbose_name=_("Agent","Seller","Buyer", related_name = "agent_buyer", on_delete=models.CASCADE))
     title = models.CharField(verbose_name=_("Property Title"), max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True,always_update=True)
-    ref_code = models.CharField(verbose_name=_("Property Reference Code"), max_length=255, unique=True
-    blank=True)
+    ref_code = models.CharField(verbose_name=_("Property Reference Code"), max_length=255, unique=True ,blank=True)
     description = models.TextField(verbose_name=_("Description"),
     default = "Default description...update me please...")
     country = CountryField(verbose_name=_("Country"), default="KE", blank_label="(select country)")
@@ -88,3 +87,15 @@ class Property(TimeStampedUUIDModel):
         tax_amount = round(tax_percentage * property_price, 2)
         price_after_tax = float(round(property_price + tax_amount, 2))
         return price_after_tax
+
+class PropertyViews(TimeStampedUUIDModel):
+    ip = models.CharField(verbose_name=_("IP Address"), max_length=255)
+    property = models.ForeignKey(Property, related_name="property_views", on_delete=models.CASCADE)
+
+ 
+    def __str__(self):
+        return f"Total Views on -{self.property.title} is - {self.property.views}"
+
+    class Meta:
+        verbose_name = "Total views on Property"
+        verbose_name_= "Total Property views "
