@@ -45,7 +45,7 @@ class Property(TimeStampedUUIDModel):
     country = CountryField(verbose_name=_("Country"), default="KE", blank_label="(select country)")
     city = models.CharField(verbose_name=_("City",max_length=180, default="Nairobi"))
     postal_code = models.CharField(verbose_name=_("Postal Code"), max_length=180, default="140")
-    street_address = models.CharField(verbose_name=_("Street Address").max_length=150, default="KG8 AVE")
+    street_address = models.CharField(verbose_name=_("Street Address"),max_length=150, default="KG8 AVE")
     property_number = models.IntegerField(verbose_name=_("Property Number"), validators=[MinValueValidator(1)], default=2)
     price = models.DecimalField(verbose_name=_("Price"), max_digits=8,decimal_places=2, default=0.0)
     tax = models.DecimalField(verbose_name=_("Property Tax"), max_length=6, decimal_places=2, default=0.15,
