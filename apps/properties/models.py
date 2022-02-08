@@ -50,7 +50,7 @@ class Property(TimeStampedUUIDModel):
     tax = models.DecimalField(verbose_name=_("Property Tax"), max_length=6, decimal_places=2, default=0.15,
     help_text= "15% property tax charge",)
     plot_area= models.DecimalField(verbose_name=_("Plot Area(m^2)"),
-     max_digits=2, default=8, decimal_places=2, default=0.0,)
+     max_digits=2, decimal_places=2, default=0.0,)
     total_floors= models.IntegerField(verbose_name=_("Number of floors"), default=0)
     bedrooms= models.IntegerField(verbose_name=_("Bedrooms"), default=1)
     bathrooms= models.DecimalField(verbose_name=_("Bathrooms"), max_digits=4, decimal_places=2, default=1.0)
