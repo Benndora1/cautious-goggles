@@ -8,4 +8,4 @@ class EnquiryAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'email',  'message', 'phone_number', 'created_at')
 
-admin.site.register(Enquiry)
+admin.site.register(Enquiry, EnquiryAdmin)
