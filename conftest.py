@@ -23,3 +23,4 @@ def super_user(db, user_factory):
 def profile(db, profile_factory):
     user_profile = profile_factory.create()
     return user_profile
+ 
