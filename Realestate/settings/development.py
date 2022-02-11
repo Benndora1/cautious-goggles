@@ -2,7 +2,7 @@ from unittest.mock import DEFAULT
 
 from .base import *
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_USE_TLS = True
@@ -16,10 +16,11 @@ SITE_NAME = "Real Estate"
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#     }dud
 # }
 DATABASES = {
     "default": {
+        
         "ENGINE": env("POSTGRES_ENGINE"),
         "NAME": env("POSTGRES_DB"),
         "USER": env("POSTGRES_USER"),
@@ -28,3 +29,7 @@ DATABASES = {
         "PORT": env("PG_PORT"),
     }
 }
+ 
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
+CELERY_TIMEOUT = "Africa/Nairobi"
