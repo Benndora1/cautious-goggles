@@ -14,7 +14,7 @@ function App() {
 		<Router>
 			<Layout className="main-layout">
 				<Header>
-					<AppHeader />
+				<AppHeader />
 				</Header>
 				<Content>
 					<Route exact path="/" component={HomePage} />
